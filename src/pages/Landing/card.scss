@@ -1,0 +1,27 @@
+.card-con {
+  .img-con {
+    &:hover img {
+      transform: scale(1.1, 1.1);
+    }
+    img {
+      transition: all 0.3s ease;
+      transform: scale(0.8, 0.8);
+    }
+  }
+
+  .card-content {
+    padding: 10px;
+    .price {
+    }
+  }
+  .btn-con {
+    margin-top: 10px;
+    button {
+      padding: 6px 10px;
+      width: 120px;
+      background: transparent;
+      border: 1px solid #003d89;
+      border-radius: 4px;
+    }
+  }
+}
