@@ -1,11 +1,23 @@
 .card-con {
+  background: $main-white;
+  border-radius: 4px;
+  box-shadow: 2px 3px 10px #639497b8;
+  transition: all 0.2s ease-in-out;
   .img-con {
-    &:hover img {
-      transform: scale(1.1, 1.1);
-    }
+    height: 150px;
+    display: flex;
+    justify-content: center;
+    align-items: normal;
+    overflow: hidden;
     img {
+      width: 100%;
+      height: auto;
+      object-fit: cover;
       transition: all 0.3s ease;
       transform: scale(0.8, 0.8);
+    }
+    &:hover img {
+      transform: scale(1.1, 1.1);
     }
   }
 
@@ -16,12 +28,21 @@
   }
   .btn-con {
     margin-top: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     button {
+      transition: all 0.3s ease-in-out;
       padding: 6px 10px;
-      width: 120px;
+      width: 48%;
       background: transparent;
-      border: 1px solid #003d89;
-      border-radius: 4px;
+      border-radius: 5px;
+      box-shadow: 2px 2px 3px #c7c7c7;
+      border: 1px solid transparent;
+      &:hover {
+        transform: scale(1.07);
+        border: 1px solid #7dcaff;
+      }
     }
   }
 }

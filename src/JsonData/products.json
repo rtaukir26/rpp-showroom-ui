@@ -1,0 +1,53 @@
+{
+  "status": 200,
+  "product": [
+    {
+      "name": "lithium battery",
+      "price": 499,
+      "description": "best battery lorem the lense the lense",
+      "length": null
+    },
+    {
+      "name": "ion battery",
+      "price": 469,
+      "description": "best battery lorem the lense the lense",
+      "length": null
+    },
+    {
+      "name": "piston",
+      "price": 598,
+      "description": "best quality lorem the lense the lense",
+      "length": null
+    },
+    {
+      "name": "piston xp",
+      "price": 589,
+      "description": "best quality lorem the lense the lense",
+      "length": null
+    },
+    {
+      "name": "filter",
+      "price": 607,
+      "description": "best quality lorem the lense the lense",
+      "length": null
+    },
+    {
+      "name": "RR wire",
+      "price": 697,
+      "description": "best quality lorem the lense the lense",
+      "length": "90m"
+    },
+    {
+      "name": "kk wire",
+      "price": 679,
+      "description": "best quality lorem the lense the lense",
+      "length": "90m"
+    },
+    {
+      "name": "valve",
+      "price": 599,
+      "description": "best quality lorem the lense the lense",
+      "length": null
+    }
+  ]
+}

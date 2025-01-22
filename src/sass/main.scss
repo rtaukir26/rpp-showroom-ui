@@ -49,6 +49,19 @@ img {
   overflow: hidden;
   text-overflow: ellipsis;
 }
+.not-found {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  span {
+    padding: 10px;
+    border-right: 1px solid #c921f3;
+    font-weight: 500;
+  }
+  img {
+    width: 35%;
+  }
+}
 @keyframes rotate_animation {
   0% {
     transform: rotate(0deg);
@@ -57,6 +70,38 @@ img {
     transform: rotate(360deg);
   }
 }
+
+@keyframes zoomAnimation {
+  from {
+    transform: scale(0.4);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+
+.rotate-img {
+  animation: loaderRotate 3s linear infinite;
+}
+
+@keyframes loaderAnim {
+  from {
+    transform: translate(-50%, -50%) rotate(10deg) translate(-200px);
+  }
+  to {
+    transform: translate(-50%, -50%) rotate(10deg) translate(200px);
+  }
+}
+
+@keyframes loaderRotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
 /* width */
 ::-webkit-scrollbar {
   width: 8px;

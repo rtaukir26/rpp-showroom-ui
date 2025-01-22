@@ -14,21 +14,40 @@ export const TrendingProducts = {
 };
 
 export const SocialMedia = {
-  facebook: require("../assets/images/facebook.png"),
-  insta: require("../assets/images/instagram.png"),
+  facebook: require("../assets/images/socialMedia/facebook.png"),
+  insta: require("../assets/images/socialMedia/instagram.png"),
+  linkedIn: require("../assets/images/socialMedia/linkedin.png"),
+  whatsapp: require("../assets/images/socialMedia/whatsapp2.png"),
+  youtube: require("../assets/images/socialMedia/youtube.png"),
 };
 
+export const SearchIcon = {
+  imgName: "search",
+  imgFile: require("../assets/images/search.png"),
+};
+export const CartIcon = {
+  imgName: "cart",
+  imgFile: require("../assets/images/cart.png"),
+};
+export const ImageIcons = {
+  star: require("../assets/images/star.png"),
+  close: require("../assets/images/close.png"),
+  notFound: require("../assets/images/notFound.png"),
+  carts: require("../assets/images/trolley.png"),
+};
 //Menu
 export const MenuImg = {
   engine: require("../assets/images/car-engine.png"),
   components: require("../assets/images/components.png"),
   streering: require("../assets/images/streering-wheel.png"),
-  filter: require("../assets/images/air-filter.png"),
+  filter: require("../assets/images/menu/air-filter.png"),
   belt: require("../assets/images/timing-belt.png"),
-};
-export const SearchIcon = {
-  imgName: "search",
-  imgFile: require("../assets/images/search.png"),
+  piston: require("../assets/images/menu/piston.png"),
+  valve: require("../assets/images/menu/valve.png"),
+  battery: require("../assets/images/menu/car-battery.png"),
+  ac: require("../assets/images/menu/ac.png"),
+  wire: require("../assets/images/menu/wires.png"),
+  switch: require("../assets/images/menu/switch.png"),
 };
 //products
 export const Products = {
@@ -43,3 +62,5 @@ export const Products = {
   spray2: require("../assets/images/products/spray-gun2.jpg"),
   allp: require("../assets/images/products/allp.webp"),
 };
+
+

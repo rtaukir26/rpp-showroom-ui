@@ -1,29 +1,138 @@
-import React from "react";
+import React, { useEffect, useLayoutEffect, useState } from "react";
 import {
   BrandLog,
   HeroLogo,
-  MenuImg,
-  Products,
+  ImageIcons,
   SearchIcon,
   SocialMedia,
-  TrendingProducts,
 } from "../../utils/images";
-import Product from "./Product";
 import Card from "./Card";
 import Footer from "./Footer";
+import ReactCarousel from "../../components/Carousel/ReactCarousel";
+import ReactBuyPopup from "../../components/ReactBuyPopup/ReactBuyPopup";
+import Menu from "../../components/Menu/Menu";
+import {
+  addToCartApi,
+  getAllProductsApi,
+  getNoOfAddedCartsApi,
+} from "../../services/landingServices";
+import { toast } from "react-toastify";
+import ProductLoader from "../../components/Loaders/ProductLoader/ProductLoader";
 
 const Landing = () => {
+  const [loader, setLoader] = useState(true);
+  const [buyPopupOpen, setBuyPopupOpen] = useState(false);
+  const [productsData, setProductsData] = useState([]);
+  const [productDetails, setProductDetails] = useState({});
+  const [noOfCarts, setNoOfCarts] = useState(0);
+  const [productQty, setProductQty] = useState(1);
+  console.log("productsData", productsData);
+
+  const getTotalAddedCarts = () => {
+    getNoOfAddedCartsApi()
+      .then((res) => {
+        console.log(res);
+        if (res.status === 200) {
+          setNoOfCarts(res.data.totalCarts);
+        }
+      })
+      .catch((err) => {
+        return err;
+      });
+  };
+
+  //get total no of added products
+  useLayoutEffect(() => {
+    getTotalAddedCarts();
+  }, []);
+
+  //get all products
+  useEffect(() => {
+    getAllProductsApi()
+      .then((res) => {
+        setLoader(false);
+        if (res.status === 200) {
+          setProductsData(res.data.data);
+        }
+      })
+      .catch((err) => {
+        toast.error(err.response.data.message);
+        setLoader(false);
+        return err;
+      });
+  }, []);
+
+  //handle buy - clicking on buy button to open popup
+  const handleBuy = (item) => {
+    setBuyPopupOpen(true);
+    setProductDetails(item);
+  };
+
+  //handle add to cart
+  const handleAddToCart = (productItem) => {
+    let payload = {
+      productId: productItem._id,
+      quantity: productQty,
+    };
+    addToCartApi(payload)
+      .then((res) => {
+        if (res.status === 200) {
+          setProductQty(1);
+          setBuyPopupOpen(false);
+          getTotalAddedCarts();
+          toast.success("product added in cart successfully");
+        } else {
+          toast.error("Failed to add in cart");
+        }
+      })
+      .catch((err) => {
+        console.log("err", err);
+        setProductQty(1);
+        toast.error(err.response.data.message);
+      });
+  };
+  //handle add quantity
+  const handleAddQty = () => {
+    if (productQty < 10) {
+      setProductQty((pre) => pre + 1);
+    }
+  };
+  //handle decrease quantity
+  const handleDecrQty = () => {
+    if (productQty > 1) {
+      setProductQty((pre) => pre - 1);
+    }
+  };
   return (
     <div className="landing-main">
+      <ReactBuyPopup
+        isOpen={buyPopupOpen}
+        handleClose={setBuyPopupOpen}
+        product={productDetails}
+        handleAddToCart={handleAddToCart}
+        handleAddQty={handleAddQty}
+        handleDecrQty={handleDecrQty}
+        // setProductQty={setProductQty}
+        productQty={productQty}
+      />
+      {/* Header */}
       <div className="landing-header">
         <div className="header-logo">
-          <img src={BrandLog.imgFile} alt={BrandLog.imgName} />
+          <div>
+            <img src={BrandLog.imgFile} alt={BrandLog.imgName} />
+          </div>
+          <span>RPP showroom</span>
         </div>
         <ul className="header-list df-ac-je">
+          <li className="cart">
+            <img src={ImageIcons.carts} alt="carts" />
+            <span className="dot">{noOfCarts}</span>
+          </li>
           <li>Sign in</li>
           <li>Sign out</li>
         </ul>
       </div>
+      {/* body */}
       <div className="landing-body">
         <div className="wrapper">
           <div className="content-con">
@@ -37,15 +146,19 @@ const Landing = () => {
             <span>Most selling parts of the month</span>
             <div className="products-con ">
               <div className="products">
-                <Product img={TrendingProducts["p1"]} cls="p1" />
+                {/* <Product img={TrendingProducts["p1"]} cls="p1" />
                 <Product img={TrendingProducts["p2"]} cls="p2" />
                 <Product img={TrendingProducts["p1"]} cls="p3" />
                 <Product img={TrendingProducts["p2"]} cls="p4" />
                 <Product img={TrendingProducts["p1"]} cls="p5" />
-                <Product img={TrendingProducts["p2"]} cls="p6" />
+                <Product img={TrendingProducts["p2"]} cls="p6" /> */}
+                <div className="react-carousel">
+                  <ReactCarousel />
+                </div>
               </div>
             </div>
           </div>
+
           <div className="img-con">
             <img
               className="main-img"
@@ -66,10 +179,13 @@ const Landing = () => {
                     <img src={SocialMedia["insta"]} alt="insta" />
                   </div>
                   <div>
-                    <img src={SocialMedia["facebook"]} alt="facebook" />
+                    <img src={SocialMedia["linkedIn"]} alt="linkedIn" />
                   </div>
                   <div>
-                    <img src={SocialMedia["insta"]} alt="insta" />
+                    <img src={SocialMedia["whatsapp"]} alt="whatsapp" />
+                  </div>
+                  <div>
+                    <img src={SocialMedia["youtube"]} alt="youtube" />
                   </div>
                 </div>
               </div>
@@ -79,70 +195,7 @@ const Landing = () => {
 
         {/* products container */}
         <div className="all-products shadow">
-          <div className="menu">
-            <ul className="main-ul">
-              <li className="li-heading">
-                Engine Components
-                <ul className="sub-ul">
-                  <li className="d-flex align-items-center">
-                    <img src={MenuImg["filter"]} alt="engine" />
-                    Filters
-                  </li>
-                  <li>
-                    <img src={MenuImg["belt"]} alt="engine" />
-                    Belts and Chains
-                  </li>
-                  <li>
-                    <img src={MenuImg["components"]} alt="engine" />
-                    Pistons and Rings
-                  </li>
-                  <li>
-                    <img src={MenuImg["filter"]} alt="engine" />
-                    Valves and Camshafts
-                  </li>
-                </ul>
-              </li>
-              <li className="li-heading">
-                Electrical Components
-                <ul className="sub-ul">
-                  <li>
-                    <img src={MenuImg["components"]} alt="engine" /> Batteries
-                  </li>
-                  <li>
-                    <img src={MenuImg["filter"]} alt="engine" />
-                    Alternators and Starters
-                  </li>
-                  <li>
-                    <img src={MenuImg["belt"]} alt="engine" />
-                    Wiring and Fuses
-                  </li>
-                  <li>
-                    {" "}
-                    <img src={MenuImg["filter"]} alt="engine" />
-                    Switches
-                  </li>
-                </ul>
-              </li>
-              <li className="li-heading">
-                Suspension and Steering
-                <ul className="sub-ul">
-                  <li>Shock Absorbers and Struts</li>
-                  <li>Ball Joints</li>
-                  <li>Tie Rods</li>
-                  <li>Steering Racks and Columns</li>
-                </ul>
-              </li>
-              <li className="li-heading">
-                Tyres and Wheels
-                <ul className="sub-ul">
-                  <li>Tyres</li>
-                  <li>Rims and Alloys</li>
-                  <li>Wheel Bearings</li>
-                  <li>Wheel Alignment Kits</li>
-                </ul>
-              </li>
-            </ul>
-          </div>
+          <Menu />
           <div className="all-product-body">
             <div className="search-con">
               <div className="search">
@@ -150,59 +203,38 @@ const Landing = () => {
                 <input type="text" placeholder="search parts" />
               </div>
             </div>
-            <div className="product-wrapper">
-              <Card
-                img={Products["battery"]}
-                desc="Lorem ipsum dolor sit amet consectetur,
-                provident."
-                price="299"
-              />
-              <Card
-                img={Products["battery2"]}
-                desc=" adipisicing elit. Cupiditate,
-                provident."
-                price="299"
-              />
-              <Card
-                img={Products["piston2"]}
-                desc=" This is the adipisicing elit. Cupiditate,
-                provident."
-                price="299"
-              />
-              <Card
-                img={Products["spray2"]}
-                desc=" This is the adipisicing
-                provident."
-                price="299"
-              />
-              <Card
-                img={Products["piston"]}
-                desc=" This is the adipisicing
-                provident."
-                price="299"
-              />
-              <Card
-                img={Products["pipe"]}
-                desc=" This is the adipisicing
-                provident."
-                price="299"
-              />
-              <Card
-                img={Products["spray2"]}
-                desc=" This is the adipisicing yeild the most
-                provident."
-                price="299"
-              />
-              <Card
-                img={Products["piston2"]}
-                desc=" This is the adipisicing and the
-                provident."
-                price="299"
-              />
-            </div>
+            {loader ? (
+              <ProductLoader />
+            ) : (
+              <div className="product-wrapper">
+                {productsData?.length > 0 ? (
+                  <>
+                    <>
+                      {productsData?.map((product) => (
+                        <Card
+                          key={product._id}
+                          product={product}
+                          handleBuy={handleBuy}
+                          handleAddToCart={handleAddToCart}
+                        />
+                      ))}
+                    </>
+                  </>
+                ) : (
+                  <div className="not-found">
+                    <span>Product not found</span>
+                    <img src={ImageIcons["notFound"]} alt="not-found" />
+                  </div>
+                )}
+              </div>
+            )}
           </div>
         </div>
       </div>
+      {/* <div className="react-carousel">
+        <ReactCarousel />
+      </div> */}
+
       {/* Clients */}
       <Footer />
     </div>

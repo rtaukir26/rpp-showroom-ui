@@ -1,21 +1,59 @@
 .landing-main {
-  height: 100vh;
+  height: 120vh;
   background: $bg-color;
   .landing-header {
     display: flex;
     align-items: center;
     justify-content: space-between;
     height: 50px;
-    padding: 10px;
+    padding: 30px;
     background: $main-white;
     .header-logo {
+      display: flex;
+      align-items: center;
+      div {
+        box-shadow: 2px 3px 6px #cbc4c4;
+        border-radius: 50%;
+        padding: 8px;
+        height: 50px;
+        width: 50px;
+        background: linear-gradient(155deg, #a8d9ff, #ffffffd6);
+      }
       img {
-        filter: drop-shadow(2px 4px 6px rgb(87, 85, 85));
+        filter: drop-shadow(2px 3px 6px #0006);
+        width: 40px;
+      }
+      span {
+        margin-left: 10px;
+        font-size: 24px;
+        font-weight: bold;
+        color: $text-heading-color;
       }
     }
     .header-list {
       padding: 10px;
       width: 50%;
+      margin: 0;
+      .cart {
+        position: relative;
+        background: transparent;
+        width: auto;
+        img {
+          filter: drop-shadow(2px 3px 4px #646363);
+        }
+        .dot {
+          position: absolute;
+          height: 18px;
+          width: 18px;
+          border-radius: 50%;
+          background: linear-gradient(45deg, #ffeb3b, #ffc107);
+          font-size: 12px;
+          top: -3px;
+          left: -5px;
+          font-weight: 500;
+          box-shadow: -0.5px 1px 4px #3f51b5;
+        }
+      }
       li {
         margin-right: 10px;
         background: $bg-color;
@@ -48,7 +86,7 @@
           font-size: 30px;
         }
         .products-con {
-          height: 100%;
+          // height: 100%;
           margin: 50px 0px;
           .products {
             position: relative;
@@ -188,11 +226,10 @@
       }
       .img-con {
         width: 50%;
-        // text-align: start;
         height: 400px;
         display: flex;
         align-items: center;
-        justify-content: start;
+        justify-content: space-between;
         .main-img {
           height: 100%;
           transition: all 0.3s ease;
@@ -203,7 +240,7 @@
           }
         }
         .brand-name {
-          margin-left: 90px;
+          // margin-left: 90px;
           p {
             margin: 0px;
           }
@@ -243,35 +280,9 @@
       background: $main-white;
       padding: 10px;
       border-radius: 4px;
-      margin-top: 100px;
+      // margin-top: 100px;
       display: flex;
 
-      .menu {
-        width: 15%;
-        color: $text-color;
-        .main-ul {
-          padding: 0;
-          .li-heading {
-            margin-bottom: 10px;
-            font-weight: bold;
-            img {
-              margin-right: 8px;
-            }
-          }
-          .sub-ul {
-            margin-top: 10px;
-            border-bottom: 1px solid $border-color;
-            li {
-              margin-bottom: 8px;
-              font-weight: normal;
-              font-size: 14px;
-              img {
-                width: 16px;
-              }
-            }
-          }
-        }
-      }
       .all-product-body {
         width: 85%;
         background: $bg-color;
@@ -302,27 +313,6 @@
           padding: 10px;
           display: grid;
           grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-          .card-con {
-            background: $main-white;
-            // background: linear-gradient(130deg, #b3a9a9, #afe1ff, #ffc5d9);
-            // box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.168627451);
-            transition: all 0.3s ease;
-            &:hover {
-              box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.168627451);
-            }
-            .img-con {
-              height: 150px;
-              display: flex;
-              justify-content: center;
-              align-items: normal;
-              overflow: hidden;
-              img {
-                width: 100%;
-                height: auto;
-                object-fit: cover;
-              }
-            }
-          }
         }
       }
     }

@@ -1,0 +1,60 @@
+.authentication-container {
+    // height: calc(100vh - 60px);
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    // background: linear-gradient(136deg, #fdf3ff, #b7ff8142, #8e9295f0);
+    background: linear-gradient(
+      136deg,
+      #fdf3ff4f,
+      rgba(183, 255, 129, 0.2588235294),
+      rgb(142 146 149 / 7%)
+    );
+    // background: #697178;
+    .authenticate-loader {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgb(116, 142, 168);
+      width: 45%;
+      height: 50%;
+      border-radius: 10px;
+      box-shadow: 2px 4px 5px #00000047;
+      overflow: hidden;
+      // img {
+      //   filter: invert(50%) brightness(40%);
+      // }
+      // .loader-img {
+      //   width: 20px;
+      //   // filter: invert(1);
+      //   img {
+      //     animation: loaderRotate 2.5s infinite linear;
+      //   }
+      // }
+      span {
+        color: #0f0f0f;
+        font-size: 16px;
+        font-weight: 600;
+        display: block;
+        margin-left: 5px;
+      }
+      &::before {
+        content: "";
+        position: absolute;
+        width: 4%;
+        height: 130%;
+  
+        // background: linear-gradient(90deg, transparent, #afafe07a);
+        background: linear-gradient(90deg, transparent, rgb(140, 168, 197));
+        transform: translate(-50%, -50%) rotate(10deg);
+        left: 50%;
+        top: 50%;
+        -webkit-animation: loaderAnim 1.5s infinite linear;
+      }
+    }
+  }
+  
+
+  
