@@ -84,12 +84,24 @@ img {
   animation: loaderRotate 3s linear infinite;
 }
 
+// @keyframes loaderAnim {
+//   from {
+//     // transform: translate(-50%, -50%) rotate(10deg) translate(-200px);
+//     transform: translate(-50%, -50%) rotate(10deg)
+//       translate(var(--translate-dist));
+//   }
+//   to {
+//     // transform: translate(-50%, -50%) rotate(10deg) translate(200px);
+//     transform: translate(-50%, -50%) rotate(10deg)
+//       translate(calc(-1 * var(--translate-dist)));
+//   }
+// }
 @keyframes loaderAnim {
   from {
-    transform: translate(-50%, -50%) rotate(10deg) translate(-200px);
+    left: 0%;
   }
   to {
-    transform: translate(-50%, -50%) rotate(10deg) translate(200px);
+    left: 100%;
   }
 }
 

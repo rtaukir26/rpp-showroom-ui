@@ -2,9 +2,12 @@
 @import "./responsive.scss";
 @import "../components/Loaders/loader.scss";
 @import "../components/Loaders/ProductLoader/productLoader.scss";
+@import "../components/Loaders/CartLoader/cartLoader.scss";
+@import "../components/Header/header.scss";
 @import "../components/Menu/menu.scss";
 @import "../pages/Landing/landing.scss";
 @import "../pages/Landing/card.scss";
 @import "../pages/Landing/footer.scss";
 @import "../components/Carousel/reactCarousel.scss";
 @import "../components/ReactBuyPopup/reactBuyPopup.scss";
+@import"../pages/Carts/carts.scss";

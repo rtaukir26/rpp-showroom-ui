@@ -8,6 +8,7 @@ const ProductLoader = () => {
       <div className="product-loader-body">
         {Array.from({ length: card }).map((_, index) => (
           <div className="loader-card" key={index}>
+            <div className="loader-mover" style={{ "--timer": "1.5s" }}></div>
             <div className="left">
               <span></span>
               <span></span>

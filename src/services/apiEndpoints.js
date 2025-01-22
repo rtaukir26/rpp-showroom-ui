@@ -7,6 +7,7 @@ export const apiEndPoints = {
   getAllCart: `${BASE_URL}/api/cart/all-cart`,
   getCartInfo: `${BASE_URL}/api/cart/cart-info/:productId`,
   updateQty: `${BASE_URL}/api/cart/update-qty`,
-  deleteCart: `${BASE_URL}/api/cart/delete-cart/:productId`,
+  deleteCart: `${BASE_URL}/api/cart/delete-cart`, //carts > products > productId > _id
   getTotalCartNo: `${BASE_URL}/api/cart/total-added-products`,
+  buyProduct: `${BASE_URL}/api/order/buy`,
 };

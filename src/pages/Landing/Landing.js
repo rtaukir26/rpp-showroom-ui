@@ -18,8 +18,11 @@ import {
 } from "../../services/landingServices";
 import { toast } from "react-toastify";
 import ProductLoader from "../../components/Loaders/ProductLoader/ProductLoader";
+import { useNavigate } from "react-router-dom";
+import { routPath } from "../../Routes/rootpath";
 
 const Landing = () => {
+  const navigate = useNavigate();
   const [loader, setLoader] = useState(true);
   const [buyPopupOpen, setBuyPopupOpen] = useState(false);
   const [productsData, setProductsData] = useState([]);
@@ -121,10 +124,10 @@ const Landing = () => {
           <div>
             <img src={BrandLog.imgFile} alt={BrandLog.imgName} />
           </div>
-          <span>RPP showroom</span>
+          <span>RPP Shop</span>
         </div>
         <ul className="header-list df-ac-je">
-          <li className="cart">
+          <li className="cart" onClick={() => navigate(routPath.cart)}>
             <img src={ImageIcons.carts} alt="carts" />
             <span className="dot">{noOfCarts}</span>
           </li>

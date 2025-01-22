@@ -29,12 +29,7 @@ export const CartIcon = {
   imgName: "cart",
   imgFile: require("../assets/images/cart.png"),
 };
-export const ImageIcons = {
-  star: require("../assets/images/star.png"),
-  close: require("../assets/images/close.png"),
-  notFound: require("../assets/images/notFound.png"),
-  carts: require("../assets/images/trolley.png"),
-};
+
 //Menu
 export const MenuImg = {
   engine: require("../assets/images/car-engine.png"),
@@ -63,4 +58,15 @@ export const Products = {
   allp: require("../assets/images/products/allp.webp"),
 };
 
-
+//all icons imports
+export const ImageIcons = {
+  star: require("../assets/images/star.png"),
+  close: require("../assets/images/close.png"),
+  notFound: require("../assets/images/notFound.png"),
+  carts: require("../assets/images/trolley.png"),
+  plusIcon: require("../assets/images/add.png"),
+  minusIcon: require("../assets/images/minus.png"),
+  deleteIcon: require("../assets/images/delete.png"),
+  shoppingBag: require("../assets/images/shopping-bag.png"),
+  loaderCircle: require("../assets/images/loader-circle.png"),
+};
