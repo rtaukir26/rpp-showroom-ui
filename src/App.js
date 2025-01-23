@@ -5,11 +5,13 @@ import CommonOutlet from "./Routes/CommonOutlet";
 import Landing from "./pages/Landing/Landing";
 import { routPath } from "./Routes/rootpath";
 import Carts from "./pages/Carts/Carts";
+import Login from "./pages/Login/Login";
 
 function App() {
   return (
     <Router>
       <Routes>
+        <Route path={routPath.login} element={<Login />} />
         <Route path={routPath.landing} element={<Landing />} />
         <Route
           path={routPath.root}

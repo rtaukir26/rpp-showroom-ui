@@ -69,4 +69,5 @@ export const ImageIcons = {
   deleteIcon: require("../assets/images/delete.png"),
   shoppingBag: require("../assets/images/shopping-bag.png"),
   loaderCircle: require("../assets/images/loader-circle.png"),
+  emailIcon: require("../assets/images/mail.png"),
 };
