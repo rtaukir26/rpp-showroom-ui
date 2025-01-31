@@ -1,0 +1,78 @@
+.create-product {
+  background: $bg-color;
+  padding: 20px;
+  height: 90vh;
+  //   min-height: 90vh;
+  .body {
+    background-image: url("../../../assets//images/bg-product.jpg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    min-height: 100%;
+    .product-content {
+      background: rgba(126, 133, 131, 0.3019607843);
+      display: grid;
+      place-items: center;
+      .content {
+        border-radius: 10px;
+        color: #ffffff;
+        padding: 10px;
+        font-weight: bold;
+        font-size: 30px;
+        text-shadow: 0px 2px 6px black;
+      }
+    }
+    .product-upload {
+      display: grid;
+      place-items: center;
+      background: #7e85834d;
+      padding: 20px;
+      .form-con {
+        width: 60%;
+        form {
+          background: linear-gradient(140deg, #ffffac, transparent);
+          label {
+            font-size: 18px;
+            text-shadow: 0 0 black;
+          }
+          input {
+            background: #ffbc6373;
+            box-shadow: 1px 2px 4px #b59645;
+          }
+          input:-webkit-autofill,
+          input:-webkit-autofill:hover,
+          input:-webkit-autofill:focus,
+          input:-webkit-autofill:active {
+            -webkit-box-shadow: 0 0 0 1000px #f9d379 inset !important; /* Replace 'white' with your desired background color */
+            background-color: transparent !important;
+            color: inherit !important; /* Ensure text color remains consistent */
+          }
+        }
+      }
+
+      .uploaded-files {
+        .img-con {
+          //   background: aliceblue;
+          margin-top: 20px;
+          display: flex;
+          //   align-items: center;
+          gap: 10px;
+          height: 100px;
+          width: 100%;
+          overflow-x: auto;
+          li {
+            background: #404040;
+            display: grid;
+            place-items: center;
+            height: 100%;
+            width: 40%;
+            min-width: 40%;
+            img {
+              max-height: 80px;
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,6 +1,8 @@
 const BASE_URL = process.env.REACT_APP_API_URL;
 
 export const apiEndPoints = {
+  login: `${BASE_URL}/api/auth/login`,
+  createProducts: `${BASE_URL}/api/product/create`,
   getAllProducts: `${BASE_URL}/api/product/all`,
   getProductInfo: `${BASE_URL}/api/product/info/:id`,
   addToCart: `${BASE_URL}/api/cart/add-to-cart`,

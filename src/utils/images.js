@@ -70,4 +70,9 @@ export const ImageIcons = {
   shoppingBag: require("../assets/images/shopping-bag.png"),
   loaderCircle: require("../assets/images/loader-circle.png"),
   emailIcon: require("../assets/images/mail.png"),
+  loaderIcon: require("../assets/images/loader.png"),
 };
+//bg images
+export const BgImg={
+  bgPr:require("../assets/images/bg-product.jpg")
+}

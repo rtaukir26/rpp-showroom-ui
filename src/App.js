@@ -6,6 +6,7 @@ import Landing from "./pages/Landing/Landing";
 import { routPath } from "./Routes/rootpath";
 import Carts from "./pages/Carts/Carts";
 import Login from "./pages/Login/Login";
+import CreateProduct from "./pages/AdminPages/CreateProduct/CreateProduct";
 
 function App() {
   return (
@@ -21,8 +22,10 @@ function App() {
             </PrivateRoutes>
           }
         >
+          <Route path={routPath.landing} element={<Landing />} />
           <Route path={routPath.root} element={<Home />} />
           <Route path={routPath.cart} element={<Carts />} />
+          <Route path={routPath.createProduct} element={<CreateProduct />} />
         </Route>
       </Routes>
     </Router>

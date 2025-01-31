@@ -1,5 +1,7 @@
 import React from "react";
 import { BrandLog, ImageIcons } from "../../utils/images";
+import { Link } from "react-router-dom";
+import { routPath } from "../../Routes/rootpath";
 
 const Header = () => {
   return (
@@ -15,7 +17,7 @@ const Header = () => {
           {/* <img src={ImageIcons.carts} alt="carts" /> */}
           {/* <span className="dot">2</span> */}
         </li>
-        <li>Sign in</li>
+        <li><Link to={routPath.createProduct}>Sign in</Link></li>
         <li>Sign out</li>
       </ul>
     </div>

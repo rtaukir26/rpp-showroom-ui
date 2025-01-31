@@ -72,6 +72,15 @@
             background: linear-gradient(180deg, #009550, #1f4c36);
             box-shadow: 1px 3px 7px #000401b8;
             transition: all 0.3s ease-in-out;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: auto;
+            img {
+              filter: invert(1);
+              width: 20px;
+              margin-left: 10px;
+            }
             &:hover {
               box-shadow: 1px 0px 7px #57ffef;
             }
@@ -82,7 +91,7 @@
     .shop-info-container {
       width: 50%;
       padding: 20px;
-    //   box-shadow: 2px 3px 4px gray;
+      //   box-shadow: 2px 3px 4px gray;
       .wrapper {
         position: relative;
         display: flex;
@@ -100,7 +109,7 @@
         font-weight: 500;
         color: #fff;
       }
-      .bottom-con{
+      .bottom-con {
         position: absolute;
         background: #ffffff;
         width: 70%;
@@ -110,4 +119,12 @@
       }
     }
   }
+}
+.form-error {
+  font-size: 12px;
+  color: tomato;
+  margin-top: 3px;
+}
+.error {
+  box-shadow: 1px 1px 4px #ff2121 !important;
 }

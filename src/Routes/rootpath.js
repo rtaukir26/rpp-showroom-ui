@@ -4,4 +4,5 @@ export const routPath = {
   landing: "/landing",
   home: "/home",
   cart: "/cart",
+  createProduct: "/create-product",
 };

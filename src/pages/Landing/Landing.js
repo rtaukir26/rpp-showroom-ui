@@ -18,7 +18,7 @@ import {
 } from "../../services/landingServices";
 import { toast } from "react-toastify";
 import ProductLoader from "../../components/Loaders/ProductLoader/ProductLoader";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { routPath } from "../../Routes/rootpath";
 
 const Landing = () => {
@@ -131,7 +131,9 @@ const Landing = () => {
             <img src={ImageIcons.carts} alt="carts" />
             <span className="dot">{noOfCarts}</span>
           </li>
-          <li>Sign in</li>
+          <li>
+            <Link to={routPath.createProduct}>Sign in</Link>
+          </li>
           <li>Sign out</li>
         </ul>
       </div>
