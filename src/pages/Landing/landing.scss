@@ -34,6 +34,10 @@
       padding: 10px;
       width: 50%;
       margin: 0;
+      a{
+        text-decoration: none;
+        color: inherit;
+      }
       .cart {
         position: relative;
         background: transparent;

@@ -13,7 +13,7 @@ function App() {
     <Router>
       <Routes>
         <Route path={routPath.login} element={<Login />} />
-        <Route path={routPath.landing} element={<Landing />} />
+        <Route path={routPath.root} element={<Landing />} />
         <Route
           path={routPath.root}
           element={
@@ -23,7 +23,7 @@ function App() {
           }
         >
           <Route path={routPath.landing} element={<Landing />} />
-          <Route path={routPath.root} element={<Home />} />
+          <Route path={routPath.home} element={<Home />} />
           <Route path={routPath.cart} element={<Carts />} />
           <Route path={routPath.createProduct} element={<CreateProduct />} />
         </Route>

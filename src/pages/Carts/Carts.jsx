@@ -24,7 +24,8 @@ const Carts = () => {
         }
       })
       .catch((err) => {
-        toast.error(err.response.data.message);
+        setLoader(false);
+        toast.error(`${err.response.data.message} | Please Login`);
       });
   };
 
@@ -64,7 +65,9 @@ const Carts = () => {
     <div className="cart-main p-4">
       <div className="cart-header p-3 fs-5 fw-bold d-flex flex-column">
         <span>Total carts:&nbsp;{cartData[0]?.products?.length}</span>
-        <span className="">Total Amount:&nbsp;{cartData[0]?.grossTotalAmount}&nbsp;&#8377;</span>
+        <span className="">
+          Total Amount:&nbsp;{cartData[0]?.grossTotalAmount}&nbsp;&#8377;
+        </span>
       </div>
 
       <div className="cart-container container-fluid">

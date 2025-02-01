@@ -25,3 +25,15 @@ export const loginApi = (formData) => {
     return error;
   }
 };
+export const logoutApi = () => {
+  try {
+    let response = axios.get(apiEndPoints.logout, {
+      headers: {
+        Authorization: "Bearer " + getToken(),
+      },
+    });
+    return response;
+  } catch (error) {
+    return error;
+  }
+};

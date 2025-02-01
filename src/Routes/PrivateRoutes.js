@@ -11,7 +11,7 @@ const PrivateRoutes = ({ children }) => {
   useEffect(() => {
     if (userToken === null) {
       // if (userToken) {
-      return navigate(routPath.landing);
+      return navigate(routPath.root);
     }
   }, []);
   return children;

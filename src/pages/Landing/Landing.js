@@ -14,22 +14,31 @@ import Menu from "../../components/Menu/Menu";
 import {
   addToCartApi,
   getAllProductsApi,
+  getCategoryApi,
   getNoOfAddedCartsApi,
 } from "../../services/landingServices";
 import { toast } from "react-toastify";
 import ProductLoader from "../../components/Loaders/ProductLoader/ProductLoader";
 import { Link, useNavigate } from "react-router-dom";
 import { routPath } from "../../Routes/rootpath";
+import { getToken } from "../../services/authServices";
 
 const Landing = () => {
   const navigate = useNavigate();
   const [loader, setLoader] = useState(true);
   const [buyPopupOpen, setBuyPopupOpen] = useState(false);
+  const [mainProducts_forFilter, setMainProducts_forFilter] = useState([]); //filter/search products from this main array
   const [productsData, setProductsData] = useState([]);
   const [productDetails, setProductDetails] = useState({});
   const [noOfCarts, setNoOfCarts] = useState(0);
   const [productQty, setProductQty] = useState(1);
+  const [categories, setCategories] = useState({});
   console.log("productsData", productsData);
+  console.log("categories", categories);
+
+  let token = getToken();
+
+  console.log("token", token);
 
   const getTotalAddedCarts = () => {
     getNoOfAddedCartsApi()
@@ -56,12 +65,27 @@ const Landing = () => {
         setLoader(false);
         if (res.status === 200) {
           setProductsData(res.data.data);
+          setMainProducts_forFilter(res.data.data);
         }
       })
       .catch((err) => {
         toast.error(err.response.data.message);
         setLoader(false);
         return err;
+      });
+  }, []);
+
+  //get category
+  useEffect(() => {
+    getCategoryApi()
+      .then((res) => {
+        console.log("res", res);
+        if (res.status === 200) {
+          setCategories(res.data.category);
+        }
+      })
+      .catch((err) => {
+        console.log(err);
       });
   }, []);
 
@@ -91,7 +115,7 @@ const Landing = () => {
       .catch((err) => {
         console.log("err", err);
         setProductQty(1);
-        toast.error(err.response.data.message);
+        toast.error(`${err.response.data.message} | Please Login`);
       });
   };
   //handle add quantity
@@ -119,44 +143,41 @@ const Landing = () => {
         productQty={productQty}
       />
       {/* Header */}
-      <div className="landing-header">
-        <div className="header-logo">
-          <div>
-            <img src={BrandLog.imgFile} alt={BrandLog.imgName} />
+
+      {!token && (
+        <div className="landing-header">
+          <div className="header-logo">
+            <div>
+              <img src={BrandLog.imgFile} alt={BrandLog.imgName} />
+            </div>
+            <span>RPP Shop</span>
           </div>
-          <span>RPP Shop</span>
+          <ul className="header-list df-ac-je">
+            <li className="cart" onClick={() => navigate(routPath.cart)}>
+              <img src={ImageIcons.carts} alt="carts" />
+              <span className="dot">{noOfCarts}</span>
+            </li>
+            <li>
+              <Link to={routPath.login}>Sign in</Link>
+            </li>
+            <li>Sign out</li>
+          </ul>
         </div>
-        <ul className="header-list df-ac-je">
-          <li className="cart" onClick={() => navigate(routPath.cart)}>
-            <img src={ImageIcons.carts} alt="carts" />
-            <span className="dot">{noOfCarts}</span>
-          </li>
-          <li>
-            <Link to={routPath.createProduct}>Sign in</Link>
-          </li>
-          <li>Sign out</li>
-        </ul>
-      </div>
+      )}
       {/* body */}
       <div className="landing-body">
         <div className="wrapper">
+          {/* Content */}
           <div className="content-con">
             <h1>
-              <span className="highlight">Trusted</span> and best quality
-              vehicle parts to boost your vehicle{" "}
-              <span className="highlight" style={{ background: "#4353a5b8" }}>
-                long.
-              </span>
+              <span className="highlight">Trusted</span> partner for all
+              electrical components with over{" "}
+              <span className="highlight">10 years </span>of experience provides
+              high-quality parts to professionals and DIY enthusiasts alike.
             </h1>
             <span>Most selling parts of the month</span>
             <div className="products-con ">
               <div className="products">
-                {/* <Product img={TrendingProducts["p1"]} cls="p1" />
-                <Product img={TrendingProducts["p2"]} cls="p2" />
-                <Product img={TrendingProducts["p1"]} cls="p3" />
-                <Product img={TrendingProducts["p2"]} cls="p4" />
-                <Product img={TrendingProducts["p1"]} cls="p5" />
-                <Product img={TrendingProducts["p2"]} cls="p6" /> */}
                 <div className="react-carousel">
                   <ReactCarousel />
                 </div>
@@ -200,7 +221,11 @@ const Landing = () => {
 
         {/* products container */}
         <div className="all-products shadow">
-          <Menu />
+          <Menu
+            menu={categories}
+            mainProducts_forFilter={mainProducts_forFilter}
+            setProductsData={setProductsData}
+          />
           <div className="all-product-body">
             <div className="search-con">
               <div className="search">

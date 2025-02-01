@@ -1,70 +1,61 @@
 import React from "react";
 import { MenuImg } from "../../utils/images";
+import { toast } from "react-toastify";
 
-const Menu = () => {
+const Menu = ({ menu, mainProducts_forFilter, setProductsData }) => {
+  console.log("menu", menu);
+  console.log("mainProducts_forFilter", mainProducts_forFilter);
+
+  //handle click on category
+  const handleClickCategory = (menu) => {
+    let filterData = mainProducts_forFilter?.filter(
+      (item) => item.category.subCategory === menu
+    );
+    if (filterData?.length > 0) {
+      setProductsData(filterData);
+    } else {
+      toast.error("No category matches");
+    }
+    console.log("filterData", filterData);
+  };
+
+  const returnSubCategory = (category) => {
+    return (
+      <ul className="sub-ul">
+        {category[1]?.subCategory?.length > 0 ? (
+          <>
+            {category[1]?.subCategory.map((subCat) => {
+              return (
+                <li
+                  key={subCat}
+                  className="d-flex align-items-center"
+                  onClick={() => handleClickCategory(subCat)}
+                >
+                  {/* <img src={MenuImg["filter"]} alt="engine" /> */}
+                  <span>{subCat}</span>
+                </li>
+              );
+            })}
+          </>
+        ) : (
+          <li>No category available</li>
+        )}
+      </ul>
+    );
+  };
   return (
     <div className="menu">
       <ul className="main-ul">
-        <li className="li-heading">
-          Engine Components
-          <ul className="sub-ul">
-            <li className="d-flex align-items-center">
-              <img src={MenuImg["filter"]} alt="engine" />
-              <span>Filters</span>
+        {Object.entries(menu).map((category, index) => {
+          return (
+            <li className="li-heading" key={category[0]}>
+              {category[0]}
+
+              {/* sub category html elements */}
+              {returnSubCategory(category)}
             </li>
-            <li className="d-flex align-items-center">
-              <img src={MenuImg["belt"]} alt="belt" />
-              <span>Belts and Chains</span>
-            </li>
-            <li className="d-flex align-items-center">
-              <img src={MenuImg["piston"]} alt="piston" />
-              <span>Pistons and Rings</span>
-            </li>
-            <li className="d-flex align-items-center">
-              <img src={MenuImg["valve"]} alt="engine" />
-              <span>Valves and Camshafts</span>
-            </li>
-          </ul>
-        </li>
-        <li className="li-heading">
-          Electrical Components
-          <ul className="sub-ul">
-            <li className="d-flex align-items-center">
-              <img src={MenuImg["battery"]} alt="battery" />
-              <span>Batteries</span>
-            </li>
-            <li className="d-flex align-items-center">
-              <img src={MenuImg["ac"]} alt="ac" />
-              <span>Alternators and Starters</span>
-            </li>
-            <li className="d-flex align-items-center">
-              <img src={MenuImg["wire"]} alt="wire" />
-              <span>Wiring and Fuses</span>
-            </li>
-            <li className="d-flex align-items-center">
-              <img src={MenuImg["switch"]} alt="switch" />
-              <span>Switches</span>
-            </li>
-          </ul>
-        </li>
-        <li className="li-heading">
-          Suspension and Steering
-          <ul className="sub-ul">
-            <li>Shock Absorbers and Struts</li>
-            <li>Ball Joints</li>
-            <li>Tie Rods</li>
-            <li>Steering Racks and Columns</li>
-          </ul>
-        </li>
-        <li className="li-heading">
-          Tyres and Wheels
-          <ul className="sub-ul">
-            <li>Tyres</li>
-            <li>Rims and Alloys</li>
-            <li>Wheel Bearings</li>
-            <li>Wheel Alignment Kits</li>
-          </ul>
-        </li>
+          );
+        })}
       </ul>
     </div>
   );

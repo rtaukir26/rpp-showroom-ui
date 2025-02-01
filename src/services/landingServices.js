@@ -2,7 +2,6 @@ import axios from "axios";
 import { apiEndPoints } from "./apiEndpoints";
 import { getToken } from "./authServices";
 
-
 export const getAllProductsApi = async () => {
   try {
     let response = axios.get(apiEndPoints.getAllProducts, {
@@ -35,6 +34,22 @@ export const getNoOfAddedCartsApi = async () => {
   try {
     let response = axios.get(
       apiEndPoints.getTotalCartNo,
+
+      {
+        headers: {
+          Authorization: "Bearer " + getToken(),
+        },
+      }
+    );
+    return response;
+  } catch (error) {
+    return error;
+  }
+};
+export const getCategoryApi = async () => {
+  try {
+    let response = axios.get(
+      apiEndPoints.getCategory,
 
       {
         headers: {
