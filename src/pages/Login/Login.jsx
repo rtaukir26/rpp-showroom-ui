@@ -7,6 +7,7 @@ import { TOKEN } from "../../constant/localStorage";
 import { ImageIcons } from "../../utils/images";
 import { useState } from "react";
 import { routPath } from "../../Routes/rootpath";
+import { setTokenWithExpiry } from "../../utils/helpers";
 
 const Login = () => {
   const [loader, setLoader] = useState(false);
@@ -33,7 +34,8 @@ const Login = () => {
             if (res.status === 200) {
               toast.success(res.data.message);
               navigate(routPath.landing);
-              localStorage.setItem(TOKEN, res.data.user.token);
+              // localStorage.setItem(TOKEN, res.data.user.token);
+              setTokenWithExpiry(res.data.user.token, 8 * 60 * 60 * 1000);
             } else {
               toast.error("Login failed");
             }
@@ -41,7 +43,7 @@ const Login = () => {
           .catch((err) => {
             setLoader(false);
             console.log("err", err);
-            toast.error(err.response.data.message);
+            toast.error(err?.response?.data?.message);
           });
       },
       //   validateOnBlur: false, // Disable validation on blur
@@ -114,23 +116,23 @@ const Login = () => {
           <div className="shop-info-container">
             <div className="wrapper">
               <div className="top-con">
-                <p className="fs-4 my-4">What's your thoughts</p>
+                <p className="fs-4 my-4">
+                  High-Quality Electrical Components at the Best Prices!
+                </p>
                 <p className="mt-5">
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Laborum provident dicta fugit eveniet ipsam sit cupiditate
-                  quidem illum! Totam, distinctio.
+                  We provide a wide range of electrical components to keep your
+                  work running smoothly. Start shopping now!
                 </p>
                 <div>clients</div>
               </div>
 
               <div className="bottom-con">
                 <strong className="">
-                  Get your best parts here and best quality in best price
+                  Trusted by Professionals, Built for Everyone!
                 </strong>
                 <p className="mt-4">
-                  Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                  Iusto, corrupti veniam quibusdam excepturi repellat error
-                  explicabo ipsam tempore repudiandae nobis!
+                  Browse our collection of electrical parts and get everything
+                  you need in one place.
                 </p>
               </div>
             </div>

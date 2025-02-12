@@ -1,6 +1,7 @@
 .menu {
   width: 17%;
   color: $text-color;
+  margin-top: 50px;
   .main-ul {
     padding: 0;
     .li-heading {
@@ -8,6 +9,41 @@
       font-weight: bold;
       img {
         margin-right: 8px;
+      }
+    }
+    .li-select-all {
+      position: relative;
+      position: relative;
+      margin-left: 35px;
+      height: 35px;
+      margin-bottom: 10px;
+      cursor: pointer;
+      &::before {
+        transition: opacity 0.3s ease-in-out;
+        content: "";
+        opacity: 0;
+        height: 100%;
+        width: 10%;
+        position: absolute;
+        top: 0px;
+        left: -46px;
+        background: linear-gradient(
+          45deg,
+          #7dd1d1,
+          rgba(68, 124, 251, 0.5882352941)
+        );
+        border-radius: 6px 0px 0px 6px;
+        box-shadow: 2px 3px 5px #b2aeaee0;
+      }
+      &:hover {
+        &::before {
+          opacity: 1;
+        }
+      }
+      &.active-menu {
+        &::before {
+          opacity: 1;
+        }
       }
     }
     .sub-ul {
@@ -23,6 +59,9 @@
         position: relative;
         border-radius: 2px;
         height: 35px;
+        &:last-child{
+          margin-bottom: 10px;
+        }
         img {
           width: 16px;
           filter: drop-shadow(2px 4px 6px $shadow);
@@ -45,6 +84,11 @@
           box-shadow: 2px 3px 5px #b2aeaee0;
         }
         &:hover {
+          &::before {
+            opacity: 1;
+          }
+        }
+        &.active-menu {
           &::before {
             opacity: 1;
           }

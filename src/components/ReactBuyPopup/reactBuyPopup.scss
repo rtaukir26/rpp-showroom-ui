@@ -49,7 +49,7 @@
       }
       img {
         transition: all 0.3s ease-in-out;
-        width: 100%;
+        // width: 100%;
       }
     }
     .btn-con {
@@ -116,6 +116,7 @@
           width: 100%;
           font-weight: bold;
           &:not(:nth-child(2)) {
+            cursor: pointer;
             width: 100%;
             background: linear-gradient(130deg, #309ea5, transparent);
             color: #000000;

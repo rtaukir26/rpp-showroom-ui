@@ -1,6 +1,6 @@
 import axios from "axios";
 import { apiEndPoints } from "./apiEndpoints";
-import { getToken } from "./authServices";
+import axiosInstance, { getToken } from "./authServices";
 
 export const getAllProductsApi = async () => {
   try {
@@ -16,14 +16,14 @@ export const getAllProductsApi = async () => {
 };
 export const addToCartApi = async (product) => {
   try {
-    let response = axios.post(
+    let response = axiosInstance.post(
       apiEndPoints.addToCart,
-      { productId: product.productId, quantity: product.quantity },
-      {
-        headers: {
-          Authorization: "Bearer " + getToken(),
-        },
-      }
+      { productId: product.productId, quantity: product.quantity }
+      // {
+      //   headers: {
+      //     Authorization: "Bearer " + getToken(),
+      //   },
+      // }
     );
     return response;
   } catch (error) {
@@ -32,7 +32,7 @@ export const addToCartApi = async (product) => {
 };
 export const getNoOfAddedCartsApi = async () => {
   try {
-    let response = axios.get(
+    let response = axiosInstance.get(
       apiEndPoints.getTotalCartNo,
 
       {

@@ -6,6 +6,8 @@ import "bootstrap/dist/js/bootstrap.bundle.min.js";
 import App from "./App";
 import { Flip, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import store from "./redux/store";
+import { Provider } from "react-redux";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -24,7 +26,9 @@ root.render(
       theme="light"
       transition={Flip}
     />
-    <App />
+    <Provider store={store}>
+      <App />
+    </Provider>
   </>
   // </React.StrictMode>
 );

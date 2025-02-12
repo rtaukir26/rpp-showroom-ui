@@ -1,6 +1,6 @@
 export const BrandLog = {
   imgName: "BrandLog",
-  imgFile: require("../assets/images/brandLogo.png"),
+  imgFile: require("../assets/images/brandLogo.webp"),
 };
 
 export const HeroLogo = {
@@ -71,6 +71,9 @@ export const ImageIcons = {
   loaderCircle: require("../assets/images/loader-circle.png"),
   emailIcon: require("../assets/images/mail.png"),
   loaderIcon: require("../assets/images/loader.png"),
+  cross2Icon: require("../assets/images/cross2.png"),
+  userIcon: require("../assets/images/user.png"),
+  logoutIcon: require("../assets/images/logout.png"),
 };
 //bg images
 export const BgImg={

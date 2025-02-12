@@ -1,22 +1,24 @@
-import React from "react";
+import React, { useState } from "react";
 import { MenuImg } from "../../utils/images";
 import { toast } from "react-toastify";
 
 const Menu = ({ menu, mainProducts_forFilter, setProductsData }) => {
-  console.log("menu", menu);
-  console.log("mainProducts_forFilter", mainProducts_forFilter);
-
+  const [activeMenu, setActiveMenu] = useState("all");
   //handle click on category
   const handleClickCategory = (menu) => {
-    let filterData = mainProducts_forFilter?.filter(
+    setActiveMenu(menu);
+    let filterData = [];
+    filterData = mainProducts_forFilter?.filter(
       (item) => item.category.subCategory === menu
     );
+
+    if (menu === "all") filterData = [...mainProducts_forFilter];
+
     if (filterData?.length > 0) {
       setProductsData(filterData);
     } else {
       toast.error("No category matches");
     }
-    console.log("filterData", filterData);
   };
 
   const returnSubCategory = (category) => {
@@ -28,7 +30,9 @@ const Menu = ({ menu, mainProducts_forFilter, setProductsData }) => {
               return (
                 <li
                   key={subCat}
-                  className="d-flex align-items-center"
+                  className={`d-flex align-items-center ${
+                    activeMenu === subCat && "active-menu"
+                  }`}
                   onClick={() => handleClickCategory(subCat)}
                 >
                   {/* <img src={MenuImg["filter"]} alt="engine" /> */}
@@ -46,7 +50,13 @@ const Menu = ({ menu, mainProducts_forFilter, setProductsData }) => {
   return (
     <div className="menu">
       <ul className="main-ul">
-        {Object.entries(menu).map((category, index) => {
+        <li
+          className={`li-select-all ${activeMenu === "all" && "active-menu"}`}
+          onClick={() => handleClickCategory("all")}
+        >
+          All products
+        </li>
+        {Object.entries(menu)?.map((category, index) => {
           return (
             <li className="li-heading" key={category[0]}>
               {category[0]}

@@ -21,7 +21,11 @@ import { toast } from "react-toastify";
 import ProductLoader from "../../components/Loaders/ProductLoader/ProductLoader";
 import { Link, useNavigate } from "react-router-dom";
 import { routPath } from "../../Routes/rootpath";
-import { getToken } from "../../services/authServices";
+import { getToken, logoutApi } from "../../services/authServices";
+import { TOKEN } from "../../constant/localStorage";
+import { updateTotalCartCount } from "../../components/Header/Header";
+import { updateCountInCart } from "../../redux/totalAddedCartCount.slice";
+import { useDispatch, useSelector } from "react-redux";
 
 const Landing = () => {
   const navigate = useNavigate();
@@ -33,30 +37,36 @@ const Landing = () => {
   const [noOfCarts, setNoOfCarts] = useState(0);
   const [productQty, setProductQty] = useState(1);
   const [categories, setCategories] = useState({});
+  const [searchValue, setSearchValue] = useState("");
+
+  const dispatch = useDispatch();
+  const totalNoOfCartCounts = useSelector(
+    (state) => state.updateNoOfCountSlice
+  );
   console.log("productsData", productsData);
   console.log("categories", categories);
 
-  let token = getToken();
+  // let token = getToken();
 
-  console.log("token", token);
+  // console.log("token", token);
 
   const getTotalAddedCarts = () => {
     getNoOfAddedCartsApi()
       .then((res) => {
-        console.log(res);
         if (res.status === 200) {
           setNoOfCarts(res.data.totalCarts);
+          dispatch(updateCountInCart(res.data.totalCarts));
         }
       })
       .catch((err) => {
-        return err;
+        console.log(err);
       });
   };
 
   //get total no of added products
-  useLayoutEffect(() => {
-    getTotalAddedCarts();
-  }, []);
+  // useLayoutEffect(() => {
+  //   getTotalAddedCarts();
+  // }, []);
 
   //get all products
   useEffect(() => {
@@ -64,14 +74,14 @@ const Landing = () => {
       .then((res) => {
         setLoader(false);
         if (res.status === 200) {
-          setProductsData(res.data.data);
-          setMainProducts_forFilter(res.data.data);
+          setProductsData(res?.data?.data);
+          setMainProducts_forFilter(res?.data?.data);
         }
       })
       .catch((err) => {
-        toast.error(err.response.data.message);
+        toast.error(err?.response?.data?.message);
         setLoader(false);
-        return err;
+        console.log("err", err);
       });
   }, []);
 
@@ -115,7 +125,7 @@ const Landing = () => {
       .catch((err) => {
         console.log("err", err);
         setProductQty(1);
-        toast.error(`${err.response.data.message} | Please Login`);
+        // toast.error(`${err?.response?.data?.message} | Please Login`);
       });
   };
   //handle add quantity
@@ -130,6 +140,51 @@ const Landing = () => {
       setProductQty((pre) => pre - 1);
     }
   };
+
+  //logout
+  const handleLogout = () => {
+    logoutApi()
+      .then((res) => {
+        // if (res.status === 200) {
+        // toast.success("Logout successfully");
+        localStorage.removeItem(TOKEN);
+        navigate(routPath.login);
+        // }
+      })
+      .catch((err) => {
+        // toast.success("Logout failed");
+        localStorage.removeItem(TOKEN);
+        navigate(routPath.login);
+        console.log(err);
+      });
+  };
+
+  //search
+  const handleChangeSearch = (e) => {
+    setSearchValue(e.target.value);
+    let result = mainProducts_forFilter.filter((item) => {
+      const name = item?.category?.name
+        ?.toLowerCase()
+        .includes(e.target.value?.toLowerCase());
+      const mainCat = item?.category?.name
+        ?.toLowerCase()
+        .includes(e.target.value?.toLowerCase());
+
+      const subCat = item?.category?.subCategory
+        ?.toLowerCase()
+        .includes(e.target.value?.toLowerCase());
+
+      return name || mainCat || subCat;
+    });
+    setProductsData(result);
+  };
+
+  // clear search
+  const handleClearSearch = () => {
+    setProductsData(mainProducts_forFilter);
+    setSearchValue("");
+  };
+
   return (
     <div className="landing-main">
       <ReactBuyPopup
@@ -144,7 +199,7 @@ const Landing = () => {
       />
       {/* Header */}
 
-      {!token && (
+      {!getToken() && (
         <div className="landing-header">
           <div className="header-logo">
             <div>
@@ -155,12 +210,13 @@ const Landing = () => {
           <ul className="header-list df-ac-je">
             <li className="cart" onClick={() => navigate(routPath.cart)}>
               <img src={ImageIcons.carts} alt="carts" />
-              <span className="dot">{noOfCarts}</span>
+              {/* <span className="dot">{noOfCarts}</span> */}
+              <span className="dot">{totalNoOfCartCounts}</span>
             </li>
             <li>
               <Link to={routPath.login}>Sign in</Link>
             </li>
-            <li>Sign out</li>
+            <li onClick={handleLogout}>Sign out</li>
           </ul>
         </div>
       )}
@@ -229,8 +285,22 @@ const Landing = () => {
           <div className="all-product-body">
             <div className="search-con">
               <div className="search">
-                <img src={SearchIcon.imgFile} alt={SearchIcon.imgName} />
-                <input type="text" placeholder="search parts" />
+                {!searchValue ? (
+                  <img src={SearchIcon.imgFile} alt={SearchIcon.imgName} />
+                ) : (
+                  <img
+                    className="cross"
+                    src={ImageIcons.cross2Icon}
+                    alt={SearchIcon.imgName}
+                    onClick={handleClearSearch}
+                  />
+                )}
+                <input
+                  type="text"
+                  placeholder="search parts"
+                  value={searchValue}
+                  onChange={handleChangeSearch}
+                />
               </div>
             </div>
             {loader ? (

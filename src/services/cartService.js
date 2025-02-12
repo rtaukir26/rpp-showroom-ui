@@ -1,13 +1,13 @@
 import axios from "axios";
-import { getToken } from "./authServices";
+import axiosInstance, { getToken } from "./authServices";
 import { apiEndPoints } from "./apiEndpoints";
 
 export const getAllCartsApi = async () => {
   try {
-    let response = axios.get(apiEndPoints.getAllCart, {
-      headers: {
-        Authorization: "Bearer " + getToken(),
-      },
+    let response = axiosInstance.get(apiEndPoints.getAllCart, {
+      // headers: {
+      //   Authorization: "Bearer " + getToken(),
+      // },
     });
     return response;
   } catch (error) {
@@ -18,16 +18,16 @@ export const getAllCartsApi = async () => {
 //delete product from cart
 export const deleteCartApi = async (product) => {
   try {
-    let response = axios.delete(
+    let response = axiosInstance.delete(
       `${apiEndPoints.deleteCart}/${product.productId._id}`,
-      {
-        headers: {
-          Authorization: "Bearer " + getToken(),
-        },
-        //   params: {
-        //     productId,
-        //   },
-      }
+      // {
+      //   headers: {
+      //     Authorization: "Bearer " + getToken(),
+      //   },
+      //   //   params: {
+      //   //     productId,
+      //   //   },
+      // }
     );
     return response;
   } catch (error) {
@@ -37,17 +37,17 @@ export const deleteCartApi = async (product) => {
 //buy product
 export const buyProductApi = async (product) => {
   try {
-    let response = axios.post(
+    let response = axiosInstance.post(
       apiEndPoints.buyProduct,
       {
         productId: product._id,
         fullName: "Taukir",
       },
-      {
-        headers: {
-          Authorization: "Bearer " + getToken(),
-        },
-      }
+      // {
+      //   headers: {
+      //     Authorization: "Bearer " + getToken(),
+      //   },
+      // }
     );
     return response;
   } catch (error) {
