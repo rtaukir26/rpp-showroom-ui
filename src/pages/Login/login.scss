@@ -15,24 +15,32 @@
     padding: 20px;
     display: flex;
     justify-content: center;
+    @include for-mobile {
+      flex-direction: column;
+      height: 100%;
+    }
     .login-container {
       padding: 20px;
       color: aliceblue;
       width: 50%;
-      //   background: #ffffff0f;
-      //   border-radius: 20px;
-      //   box-shadow: 0px 3px 15px #0005;
+
+      @include for-mobile {
+        width: 100%;
+      }
       .wrapper {
         display: flex;
         flex-direction: column;
-        background: rgba(255, 255, 255, 0.0588235294);
+        // background: rgba(255, 255, 255, 0.0588235294);
         border-radius: 20px;
-        box-shadow: 0px 3px 15px rgba(0, 0, 0, 0.333333);
+        // box-shadow: 0px 3px 15px rgba(0, 0, 0, 0.333333);
         padding: 20px;
         width: 80%;
         margin: auto;
         color: #ffffffd9;
         height: 100%;
+        @include for-mobile {
+          width: 100%;
+        }
         .form-con {
           .form-grp {
             display: flex;
@@ -91,12 +99,17 @@
     .shop-info-container {
       width: 50%;
       padding: 20px;
-      //   box-shadow: 2px 3px 4px gray;
+      @include for-mobile {
+        width: 100%;
+      }
       .wrapper {
         position: relative;
         display: flex;
         justify-content: center;
         height: 100%;
+        @include for-mobile {
+          flex-direction: column;
+        }
       }
       .top-con {
         position: absolute;
@@ -108,6 +121,12 @@
         padding: 20px;
         font-weight: 500;
         color: #fff;
+        @include for-mobile {
+          position: relative;
+          top: 0px;
+          height: auto;
+          width: 100%;
+        }
       }
       .bottom-con {
         position: absolute;
@@ -116,6 +135,13 @@
         padding: 20px;
         bottom: -24px;
         border-radius: 6px;
+        @include for-mobile {
+          position: relative;
+          bottom: -10px;
+          // height: auto;
+          width: 100%;
+          display: none;
+        }
       }
     }
   }

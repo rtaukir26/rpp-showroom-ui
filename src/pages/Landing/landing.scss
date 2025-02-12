@@ -81,10 +81,16 @@
     .wrapper {
       display: flex;
       justify-content: space-between;
+      @include for-mobile {
+        flex-direction: column;
+      }
       .content-con {
         width: 50%;
         padding: 10px;
         border-radius: 3px;
+        @include for-mobile {
+          width: 100%;
+        }
         h1 {
           color: $text-heading-color;
           font-size: 30px;
@@ -234,6 +240,9 @@
         display: flex;
         align-items: center;
         justify-content: space-between;
+        @include for-mobile {
+          width: 100%;
+        }
         .main-img {
           height: 100%;
           transition: all 0.3s ease;

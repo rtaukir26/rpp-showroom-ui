@@ -2,6 +2,9 @@
   width: 500px;
   // background: antiquewhite;
   margin: auto;
+  @include for-mobile {
+    width: 100%;
+  }
 }
 .container {
   padding: 10px 150px;
@@ -36,11 +39,10 @@ p {
 .mb-10 {
   margin-bottom: 100px;
 }
-.dluTbn{
+.dluTbn {
   border-radius: 20px;
   box-shadow: 2px 4px 6px #e5d9d9;
 }
-
 
 @media screen and (max-width: 800px) {
   .container {
