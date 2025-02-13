@@ -2,6 +2,9 @@
   width: 17%;
   color: $text-color;
   margin-top: 50px;
+  @include for-mobile {
+    display: none;
+  }
   .main-ul {
     padding: 0;
     .li-heading {
@@ -59,7 +62,7 @@
         position: relative;
         border-radius: 2px;
         height: 35px;
-        &:last-child{
+        &:last-child {
           margin-bottom: 10px;
         }
         img {

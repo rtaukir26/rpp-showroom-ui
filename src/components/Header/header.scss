@@ -37,6 +37,7 @@
     margin: 0;
     @include for-mobile {
       width: 70%;
+      gap: 10px;
     }
     a {
       text-decoration: none;
@@ -49,6 +50,9 @@
       cursor: pointer;
       img {
         filter: drop-shadow(2px 3px 4px #646363);
+        @include for-mobile {
+          width: 24px;
+        }
       }
       .dot {
         position: absolute;
@@ -73,6 +77,11 @@
       color: #fff;
       font-weight: 500;
       box-shadow: 1px 3px 5px #b5b5b5;
+      @include for-mobile {
+        font-size: 12px;
+        padding: 5px;
+        font-weight: normal;
+      }
       img {
         filter: drop-shadow(2px 3px 4px #646363);
       }
@@ -89,12 +98,10 @@
       border-radius: 30px;
 
       img {
-        // filter: drop-shadow(2px 3px 4px #646363);
+        @include for-mobile {
+          width: 24px;
+        }
       }
-      // &:hover {
-      //   box-shadow: 2px 4px 6px $shadow;
-      //   letter-spacing: 0.4px;
-      // }
     }
   }
 }

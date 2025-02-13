@@ -8,15 +8,18 @@
     height: 50px;
     padding: 30px;
     background: $main-white;
+    @include for-mobile {
+      padding: 30px 15px;
+    }
     .header-logo {
       display: flex;
       align-items: center;
       div {
         box-shadow: 2px 3px 6px #cbc4c4;
-        border-radius: 50%;
-        padding: 8px;
-        height: 50px;
-        width: 50px;
+        // border-radius: 50%;
+        // padding: 8px;
+        // height: 50px;
+        // width: 50px;
         background: linear-gradient(155deg, #a8d9ff, #ffffffd6);
       }
       img {
@@ -28,12 +31,18 @@
         font-size: 24px;
         font-weight: bold;
         color: $text-heading-color;
+        @include for-mobile {
+          font-size: 15px;
+        }
       }
     }
     .header-list {
       padding: 10px;
       width: 50%;
       margin: 0;
+      @include for-mobile {
+        width: 65%;
+      }
       a {
         text-decoration: none;
         color: inherit;
@@ -44,6 +53,9 @@
         width: auto;
         img {
           filter: drop-shadow(2px 3px 4px #646363);
+          @include for-mobile {
+            width: 22px;
+          }
         }
         .dot {
           position: absolute;
@@ -59,7 +71,6 @@
         }
       }
       li {
-        margin-right: 10px;
         background: $bg-color;
         padding: 8px;
         width: 15%;
@@ -67,6 +78,13 @@
         border-radius: 3px;
         cursor: pointer;
         transition: all 0.3s ease;
+        &:not(:last-child) {
+          margin-right: 10px;
+        }
+        @include for-mobile {
+          width: 35%;
+          font-size: 12px;
+        }
         &:hover {
           box-shadow: 2px 4px 6px $shadow;
           letter-spacing: 0.4px;
@@ -94,6 +112,10 @@
         h1 {
           color: $text-heading-color;
           font-size: 30px;
+          line-height: normal;
+          @include for-mobile {
+            font-size: 18px;
+          }
         }
         .products-con {
           // height: 100%;
@@ -246,6 +268,10 @@
         .main-img {
           height: 100%;
           transition: all 0.3s ease;
+          @include for-mobile {
+            width: 50%;
+            height: auto;
+          }
           // visibility: hidden;
           &:hover {
             transform: translateX(-10px) scale(1.01, 1);
@@ -254,6 +280,9 @@
         }
         .brand-name {
           // margin-left: 90px;
+          @include for-mobile {
+            width: 50%;
+          }
           p {
             margin: 0px;
           }
@@ -308,6 +337,9 @@
           .search {
             position: relative;
             width: 30%;
+            @include for-mobile {
+              width: 100%;    
+            }
             input {
               border: none;
               // box-shadow: 0px 0px 4px #d0eaff;
