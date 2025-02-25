@@ -2,6 +2,7 @@
   width: 17%;
   color: $text-color;
   margin-top: 50px;
+  margin-right: 10px;
   @include for-mobile {
     display: none;
   }

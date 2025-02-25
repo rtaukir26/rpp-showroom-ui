@@ -1,5 +1,5 @@
 import React from "react";
-import { BrandLog, MenuImg, Products } from "../../utils/images";
+import { BrandLog, ImageIcons, MenuImg, Products } from "../../utils/images";
 
 const Footer = () => {
   return (
@@ -11,7 +11,7 @@ const Footer = () => {
       <div className="footer-header">
         <div className="footer-card">
           <div className="footer-img">
-            <img src={Products["allp"]} alt="product" />
+            <img src={ImageIcons.clientsIcon} alt="product" />
           </div>
           <div className="f-content">
             <span>Happy Clients</span>
@@ -20,7 +20,7 @@ const Footer = () => {
         </div>
         <div className="footer-card">
           <div className="footer-img">
-            <img src={Products["allp"]} alt="product" />
+            <img src={ImageIcons.productAlIcon} alt="product" />
           </div>
           <div className="f-content">
             <span>Products</span>
@@ -29,7 +29,7 @@ const Footer = () => {
         </div>
         <div className="footer-card">
           <div className="footer-img">
-            <img src={Products["allp"]} alt="product" />
+            <img src={ImageIcons.trendingItemsIcon}  alt="product" />
           </div>
           <div className="f-content">
             <span>Trending Items</span>
@@ -37,6 +37,8 @@ const Footer = () => {
           </div>
         </div>
       </div>
+
+
       <div className="footer-content">
         <div className="wrapper">
           <div className="general">

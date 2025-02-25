@@ -4,12 +4,19 @@
   box-shadow: 2px 3px 10px #639497b8;
   transition: all 0.2s ease-in-out;
   max-width: 360px;
+  @include for-mobile {
+    width: 50%;
+    box-shadow: 2px 3px 10px transparent;
+  }
   .img-con {
     height: 150px;
     display: flex;
     justify-content: center;
     align-items: normal;
     overflow: hidden;
+    @include for-mobile {
+      height: 100px;
+    }
     img {
       // width: 100%;
       height: auto;

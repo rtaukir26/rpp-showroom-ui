@@ -74,6 +74,9 @@ export const ImageIcons = {
   cross2Icon: require("../assets/images/cross2.png"),
   userIcon: require("../assets/images/user.png"),
   logoutIcon: require("../assets/images/logout.png"),
+  clientsIcon: require("../assets/images/clients.png"),
+  productAlIcon: require("../assets/images/productAll.png"),
+  trendingItemsIcon: require("../assets/images/trendingItems.png"),
 };
 //bg images
 export const BgImg={

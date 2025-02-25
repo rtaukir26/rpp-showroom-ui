@@ -65,7 +65,7 @@ const ReactBuyPopup = ({
               </div>
               <p>{product?.description}</p>
 
-              <strong>Price: {product?.price}$</strong>
+              <strong>Price: {product?.price} &#8377;</strong>
               <div className="quantity-con">
                 <span>Quantity</span>
                 <div className="add-qty">
@@ -74,7 +74,7 @@ const ReactBuyPopup = ({
                   <span onClick={handleAddQty}>+</span>
                 </div>
               </div>
-              <strong>Total price :20$</strong>
+              <strong>Total price : {product?.price} &#8377;</strong>
             </div>
           </div>
         </div>

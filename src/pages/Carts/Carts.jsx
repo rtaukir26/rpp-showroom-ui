@@ -143,7 +143,7 @@ const Carts = () => {
                       {/* content */}
 
                       <div class="card-content d-flex flex-column ms-5  ">
-                        <div className="d-flex align-items-center">
+                        <div className="userRating d-flex align-items-center">
                           <strong class="me-4">{prod?.productId?.name} </strong>
                           <span className="bg-primary shadow text-white py-1 px-3 rounded-5 d-flex align-items-center">
                             <img

@@ -1,4 +1,39 @@
 .cart-main {
   background: $bg-color;
   min-height: 90vh;
+  .cart-item {
+    @include for-mobile {
+      padding: 0 !important;
+      border-bottom: 1px solid $bg-color !important;
+    }
+  }
+  .cart-img-div {
+    @include for-mobile {
+      width: 100% !important;
+    }
+  }
+  .userRating {
+    @include for-mobile {
+      margin-top: 10px;
+      align-items: start !important;
+      flex-direction: column-reverse !important;
+    }
+  }
+  .card-content {
+    @include for-mobile {
+      padding-right: 10px !important;
+      margin-left: 10px !important;
+    }
+  }
+  .btn-grp {
+    @include for-mobile {
+      button {
+        margin: 0px !important;
+        margin-right: 2px !important;
+        img{
+          width: 20px !important;
+        }
+      }
+    }
+  }
 }

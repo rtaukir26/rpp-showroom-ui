@@ -50,6 +50,9 @@
       display: flex;
       justify-content: center;
       align-items: center;
+      @include for-mobile {
+        height: 150px;
+      }
       &:hover {
         // overflow: auto;
         img {
@@ -58,7 +61,9 @@
       }
       img {
         transition: all 0.3s ease-in-out;
-        // width: 100%;
+        @include for-mobile {
+          height: 100%;
+        }
       }
     }
     .btn-con {
@@ -92,6 +97,7 @@
     @include for-mobile {
       width: 100%;
       margin-top: 15px;
+      padding: 0;
     }
     .rating-star {
       display: flex;
